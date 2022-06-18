@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:not_net_flix/ui/screens/home_screen.dart';
+import 'package:not_net_flix/repositories/data_repository.dart';
+import 'package:not_net_flix/ui/screens/loading_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => DataRepository(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,12 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Nano NetFlix',
+      title: 'NotNetFlix',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const LoadingScreen(),
     );
   }
 }

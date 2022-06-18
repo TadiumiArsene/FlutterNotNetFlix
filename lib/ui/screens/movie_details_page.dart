@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:not_net_flix/models/movie.dart';
 import 'package:not_net_flix/repositories/data_repository.dart';
 import 'package:not_net_flix/ui/widgets/movie_action_button.dart';
@@ -44,6 +43,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
               padding: const EdgeInsets.all(8.0),
               child: ListView(
                 children: [
+                  // ignore: sized_box_for_whitespace
                   Container(
                     height: 220,
                     width: MediaQuery.of(context).size.width,

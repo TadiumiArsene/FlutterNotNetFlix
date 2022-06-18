@@ -139,4 +139,18 @@ class APIService {
       throw response;
     }
   }
+
+  Future<Movie> fetchMovieVideos({required Movie movie}) async {
+    Response response = await fetchData('3/movie/${movie.id}/videos');
+
+    if (response.statusCode == 200) {
+      Map data = response.data;
+      List<String> videosKey = data['results'].map((dynamic videoJson) {
+        return videoJson['key'];
+      }).toList();
+      return movie.copyWith(videos: videosKey);
+    } else {
+      throw response;
+    }
+  }
 }

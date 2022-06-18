@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:not_net_flix/models/movie.dart';
 import 'package:not_net_flix/repositories/data_repository.dart';
+import 'package:not_net_flix/ui/widgets/movie_action_button.dart';
 import 'package:not_net_flix/ui/widgets/movie_infos.dart';
 import 'package:not_net_flix/utils/constante.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/movie_video_player.dart';
 
 class MovieDetailsPage extends StatefulWidget {
   final Movie movie;
@@ -43,9 +47,27 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                   Container(
                     height: 220,
                     width: MediaQuery.of(context).size.width,
-                    color: Colors.red,
+                    child: VideoPlayer(movieID: newMovie!.videos!.first),
                   ),
-                  MovieInfo(movie: newMovie!)
+                  MovieInfo(movie: newMovie!),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  ActionButton(
+                    label: 'Lecture',
+                    icon: Icons.play_arrow,
+                    bgColor: Colors.white,
+                    forColor: kBackgroundColor,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ActionButton(
+                    label: 'Télécharger la vidéo',
+                    icon: Icons.download,
+                    bgColor: Colors.grey.withOpacity(0.3),
+                    forColor: Colors.white,
+                  ),
                 ],
               ),
             ),

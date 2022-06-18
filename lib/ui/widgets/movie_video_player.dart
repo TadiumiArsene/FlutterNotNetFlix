@@ -39,6 +39,14 @@ class _VideoPlayerState extends State<VideoPlayer> {
               size: 20,
             ),
           )
-        : YoutubePlayer(controller: controlleur!);
+        : YoutubePlayer(
+            controller: controlleur!,
+            progressColors: ProgressBarColors(
+                handleColor: kPrimaryColor, playedColor: Colors.greenAccent),
+            onEnded: (YoutubeMetaData meta) {
+              controlleur!.play();
+              controlleur!.pause();
+            },
+          );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:not_net_flix/models/movie.dart';
 import 'package:not_net_flix/repositories/data_repository.dart';
 import 'package:not_net_flix/ui/widgets/movie_action_button.dart';
@@ -47,7 +48,17 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                   Container(
                     height: 220,
                     width: MediaQuery.of(context).size.width,
-                    child: VideoPlayer(movieID: newMovie!.videos!.first),
+                    child: newMovie!.videos!.isEmpty
+                        ? Center(
+                            child: Text(
+                              'Video indisponible !',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.red,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        : VideoPlayer(movieID: newMovie!.videos!.first),
                   ),
                   MovieInfo(movie: newMovie!),
                   const SizedBox(

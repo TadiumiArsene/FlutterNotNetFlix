@@ -8,6 +8,8 @@ import 'package:not_net_flix/ui/widgets/movie_infos.dart';
 import 'package:not_net_flix/utils/constante.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/movie_casting.dart';
+import '../widgets/movie_galerie_card.dart';
 import '../widgets/movie_video_player.dart';
 
 class MovieDetailsPage extends StatefulWidget {
@@ -79,6 +81,83 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                     bgColor: Colors.grey.withOpacity(0.3),
                     forColor: Colors.white,
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: Text(
+                      newMovie!.description,
+                      style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Casting',
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  //containeur des casting
+                  SizedBox(
+                    height: 350,
+                    child: ListView.builder(
+                      itemCount: newMovie!.casting!.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, int index) {
+                        return newMovie!.casting![index].imageURL == null
+                            ? Center(
+                                child: Text(
+                                  'Image indisponible !',
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.red,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            : CastingCard(person: newMovie!.casting![index]);
+                      },
+                    ),
+                  ),
+                  Text(
+                    'Galerie',
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  //containeur des images
+                  SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      itemCount: newMovie!.images!.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, int index) {
+                        return newMovie!.images![index] == ''
+                            ? Center(
+                                child: Text(
+                                  'Image introuvable !',
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.red,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            : GalerieCard(posterPath: newMovie!.images![index]);
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  )
                 ],
               ),
             ),

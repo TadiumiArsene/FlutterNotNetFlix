@@ -1,3 +1,4 @@
+import 'package:not_net_flix/models/person.dart';
 import 'package:not_net_flix/services/api.dart';
 
 class Movie {
@@ -9,26 +10,34 @@ class Movie {
   final String? releaseDate;
   final double? vote;
   final List<String>? videos;
+  final List<Person>? casting;
+  final List<String>? images;
 
-  Movie(
-      {required this.id,
-      required this.name,
-      required this.description,
-      this.posterPath,
-      this.genres,
-      this.releaseDate,
-      this.vote,
-      this.videos});
+  Movie({
+    required this.id,
+    required this.name,
+    required this.description,
+    this.posterPath,
+    this.genres,
+    this.releaseDate,
+    this.vote,
+    this.videos,
+    this.casting,
+    this.images,
+  });
 
-  Movie copyWith(
-      {int? id,
-      String? name,
-      String? description,
-      String? posterPath,
-      List<String>? genres,
-      String? releaseDate,
-      double? vote,
-      List<String>? videos}) {
+  Movie copyWith({
+    int? id,
+    String? name,
+    String? description,
+    String? posterPath,
+    List<String>? genres,
+    String? releaseDate,
+    double? vote,
+    List<String>? videos,
+    List<Person>? casting,
+    List<String>? images,
+  }) {
     return Movie(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -38,6 +47,8 @@ class Movie {
       releaseDate: releaseDate ?? this.releaseDate,
       vote: vote ?? this.vote,
       videos: videos ?? this.videos,
+      casting: casting ?? this.casting,
+      images: images ?? this.images,
     );
   }
 

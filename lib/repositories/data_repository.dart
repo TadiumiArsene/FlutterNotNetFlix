@@ -110,10 +110,20 @@ class DataRepository with ChangeNotifier {
   //Definition fonction renvoie movie details
   Future<Movie> getMovieDetails({required Movie paramMovie}) async {
     try {
-      //ici on recupère les info du film
-      Movie newMovie = await apiService.fetchMovieDetails(movie: paramMovie);
-      //ici on recupère la video relative au film
-      newMovie = await apiService.fetchMovieVideos(movie: newMovie);
+      // //ici on recupère les info du film
+      // Movie newMovie = await apiService.fetchMovieDetails(movie: paramMovie);
+
+      // //ici on recupère la video relative au film
+      // newMovie = await apiService.fetchMovieVideos(movie: newMovie);
+
+      // //ici on recupère le casting relatif au film
+      // newMovie = await apiService.fetchMovieCast(movie: newMovie);
+
+      // //ici on recupère les images relatives au film
+      // newMovie = await apiService.fetchMovieImages(movie: newMovie);
+
+      //ici j'ai centralisé tout les appelles Apis via une seul methode
+      Movie newMovie = await apiService.fetchMovie(movie: paramMovie);
       return newMovie;
     } on Response catch (response) {
       // ignore: avoid_print
